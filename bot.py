@@ -1,9 +1,12 @@
 import json
 import os
 from aiogram import Bot, Dispatcher, executor, types
-from config import TOKEN, ADMIN_ID
 
-bot = Bot(token=TOKEN)
+# Token va admin ID ni ENV orqali olish
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+ADMIN_ID = int(os.environ.get("ADMIN_ID", 0))
+
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot)
 
 # JSON fayl yo‘llari
@@ -102,3 +105,4 @@ async def add_question(message: types.Message):
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
+
